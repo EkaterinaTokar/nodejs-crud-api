@@ -18,12 +18,21 @@ export const getUsers = (response, users) => __awaiter(void 0, void 0, void 0, f
         response.end("500 Internal Server Error");
     }
 });
+const isValidUUID = (uuid) => {
+    const uuidRegex = /^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/;
+    return uuidRegex.test(uuid);
+};
 export const getUserById = (request, response, userId, users) => __awaiter(void 0, void 0, void 0, function* () {
     try {
+        if (!isValidUUID(userId)) {
+            response.writeHead(400, { "Content-Type": "text/plain" });
+            response.end("Invalid userId");
+            return;
+        }
         const user = users.find((u) => u.id === userId);
         if (!user) {
             response.writeHead(404, { "Content-Type": "text/plain" });
-            response.end("User not found");
+            response.end("User doesn't exist");
             return;
         }
         response.writeHead(200, { "Content-Type": "application/json" });
