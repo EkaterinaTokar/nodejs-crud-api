@@ -1,13 +1,24 @@
 import http from "node:http";
-import { getUsers } from "./getHandler.js";
+import { getUsers, getUserById } from "./getHandler.js";
 import dotenv from 'dotenv';
 dotenv.config();
 const port = process.env.PORT || 8080;
-console.log(port);
+export let users = [
+    {
+        "username": "example7",
+        "age": 37,
+        "hobbies": ["reading7"],
+        "id": "1"
+    }
+];
 const server = http.createServer((request, response) => {
     try {
         if (request.method === "GET" && request.url === "/api/users") {
-            getUsers(response);
+            getUsers(response, users);
+        }
+        else if (request.url && request.url.startsWith("/api/users/")) {
+            const userId = request.url.split("/").pop();
+            getUserById(request, response, userId, users);
         }
         else {
             console.error("404");

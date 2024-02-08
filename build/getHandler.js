@@ -7,11 +7,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-import { readFile } from "node:fs/promises";
-export const getUsers = (response) => __awaiter(void 0, void 0, void 0, function* () {
+export const getUsers = (response, users) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const usersJson = yield readFile("src/users.json", "utf-8");
-        const users = JSON.parse(usersJson);
         response.writeHead(200, { "Content-Type": "application/json" });
         response.end(JSON.stringify(users));
     }
@@ -19,5 +16,22 @@ export const getUsers = (response) => __awaiter(void 0, void 0, void 0, function
         console.error("Server Error:", error);
         response.writeHead(500, { "Content-Type": "text/plain" });
         response.end("500 Internal Server Error");
+    }
+});
+export const getUserById = (request, response, userId, users) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const user = users.find((u) => u.id === userId);
+        if (!user) {
+            response.writeHead(404, { "Content-Type": "text/plain" });
+            response.end("User not found");
+            return;
+        }
+        response.writeHead(200, { "Content-Type": "application/json" });
+        response.end(JSON.stringify(user));
+    }
+    catch (error) {
+        console.error("Error getting user by id:", error);
+        response.writeHead(500, { "Content-Type": "text/plain" });
+        response.end("Server Error");
     }
 });
