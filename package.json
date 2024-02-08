@@ -1,0 +1,25 @@
+{
+  "name": "nodejs-crud-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start:prod": "tsc && node build/server.js",
+    "start:dev": "nodemon"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^20.11.16",
+    "nodemon": "^3.0.3",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "@types/uuid": "^9.0.8",
+    "dotenv": "^16.4.1",
+    "uuid": "^9.0.1"
+  }
+}
