@@ -32,7 +32,7 @@ export const addUser = async (request: any, response: any, users: User[]): Promi
         response.end(JSON.stringify(newUser));
       } catch (error) {
         console.error("Invalid data:", error);
-        response.writeHead(400, { "Content-Type": "application/json" });
+        response.writeHead(400, { "Content-Type": "text/plain" });
         response.end("Invalid data");
       }
     });

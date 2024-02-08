@@ -1,6 +1,7 @@
 import http from "node:http";
 import { getUsers, getUserById } from "./getHandler.js";
 import { addUser } from "./postHandler.js";
+import { updateUser } from "./putHandler.js";
 import dotenv from 'dotenv';
 dotenv.config();
 const port = process.env.PORT || 8080;
@@ -16,6 +17,10 @@ const server = http.createServer((request, response) => {
         }
         else if (request.method === "POST" && request.url === "/api/users") {
             addUser(request, response, users);
+        }
+        else if (request.method === "PUT" && request.url && request.url.startsWith("/api/users/")) {
+            const userId = request.url.split("/").pop();
+            updateUser(request, response, userId, users);
         }
         else {
             console.error("404");

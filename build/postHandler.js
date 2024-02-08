@@ -36,7 +36,7 @@ export const addUser = (request, response, users) => __awaiter(void 0, void 0, v
             }
             catch (error) {
                 console.error("Invalid data:", error);
-                response.writeHead(400, { "Content-Type": "application/json" });
+                response.writeHead(400, { "Content-Type": "text/plain" });
                 response.end("Invalid data");
             }
         }));
