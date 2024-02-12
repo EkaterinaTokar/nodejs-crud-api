@@ -17,7 +17,7 @@ export const deleteUser = (request, response, userId, users) => __awaiter(void 0
         }
         users.splice(userToDeleteIndex, 1);
         response.statusCode = 204;
-        response.end();
+        response.end(JSON.stringify(users));
     }
     catch (error) {
         console.error("Server Error:", error);

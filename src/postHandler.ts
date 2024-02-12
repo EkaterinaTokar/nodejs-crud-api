@@ -1,5 +1,4 @@
 import { User } from "./interface";
-import { users } from "./server.js";
 import { v4 as uuidv4 } from "uuid";
 
 
