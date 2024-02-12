@@ -1,3 +1,4 @@
+var _a;
 import http from "node:http";
 import { getUsers, getUserById } from "./getHandler.js";
 import { addUser } from "./postHandler.js";
@@ -5,9 +6,9 @@ import { updateUser } from "./putHandler.js";
 import { deleteUser } from "./deleteHandler.js";
 import dotenv from 'dotenv';
 dotenv.config();
-const port = process.env.PORT || 8080;
-export let users = [];
-const server = http.createServer((request, response) => {
+const port = (_a = process.env.PORT) !== null && _a !== void 0 ? _a : 8080;
+export const users = [];
+export const server = http.createServer((request, response) => {
     try {
         if (request.method === "GET" && request.url === "/api/users") {
             getUsers(response, users);

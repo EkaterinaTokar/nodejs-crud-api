@@ -3,15 +3,16 @@ import { User } from "./interface";
 import { getUsers, getUserById } from "./getHandler.js";
 import { addUser } from "./postHandler.js";
 import { updateUser } from "./putHandler.js";
-import {deleteUser } from "./deleteHandler.js"
+import { deleteUser } from "./deleteHandler.js";
+
 import dotenv from 'dotenv';
 dotenv.config();
 
-const port = process.env.PORT || 8080;
+const port = process.env.PORT ?? 8080;
 
-export let users: User[]  = [];
+export const users: User[]  = [];
 
-const server = http.createServer((request, response) => {
+export const server = http.createServer((request, response) => {
   try {
     if (request.method === "GET" && request.url === "/api/users") {
       getUsers(response, users);

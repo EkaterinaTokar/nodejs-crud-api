@@ -1,6 +1,4 @@
 import { User } from "./interface";
-import { users } from "./server.js";
-import { v4 as uuidv4 } from "uuid";
 
 export const getUsers = async (response: any, users: User[]): Promise<void>=> {
   try {
